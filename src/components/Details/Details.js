@@ -10,10 +10,11 @@ import useStyles from './styles';
 
 const Details = ({ title }) => {
   const classes = useStyles();
-
   return (
     <Card
-      className={title === 'income' ? classes.income : classes. expense}
+      className={
+        title === 'income' ? classes.income : classes.expense
+      }
     >
       <CardHeader title={title} />
       <CardContent>

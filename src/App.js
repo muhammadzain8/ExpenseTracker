@@ -1,11 +1,12 @@
 import React from 'react';
-import Details from './components/Details/Details';
+import useStyles from './styles';
 import { Grid } from '@material-ui/core';
-import useStyles from './styles'
-
+import Details from './components/Details/Details';
+import Main from './components/Main/Main';
 
 const App = () => {
-  const classes=useStyles( )
+  const classes = useStyles();
+
   return (
     <div>
       <Grid
@@ -17,13 +18,13 @@ const App = () => {
         style={{ height: '100vh' }}
       >
         <Grid item xs={12} sm={4}>
-          <Details title='income'/>
+          <Details title='income' />
+        </Grid>
+        <Grid item xs={12} sm={3}>
+          <Main />
         </Grid>
         <Grid item xs={12} sm={4}>
-          <main />
-        </Grid>
-        <Grid item xs={12} sm={4}>
-          <Details title='expense'/>
+          <Details title='expense' />
         </Grid>
       </Grid>
     </div>
