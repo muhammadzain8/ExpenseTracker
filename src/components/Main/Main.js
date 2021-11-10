@@ -15,10 +15,10 @@ const Main = () => {
   const classes = useStyles();
 
   return (
-    <Card className={classes.root}>
+    <Card className={classes.main}>
       <CardHeader
         title='Expense Tracker'
-        subHeader='voice based navigation'
+        // subHeader='voice based navigation'
       />
       <CardContent>
         <Typography align='center' variant='h5'>

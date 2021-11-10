@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import {
   List as MuiList,
   ListItem,
@@ -11,41 +11,33 @@ import {
 } from '@material-ui/core';
 import useStyles from './styles';
 import { Delete, MoneyOff } from '@material-ui/icons';
+import { ExpenseTrackerContext } from 'context/context';
 
 const List = () => {
   const classes = useStyles();
 
-  const transaction = [
-    {
-      id: 1,
-      type: 'income',
-      category: 'salary',
-      amount: 100,
-      date: new Date(),
-    },
-    {
-      id: 2,
-      type: 'expense',
-      category: 'expense',
-      amount: 100,
-      date: new Date(),
-    },
-  ];
+  const { deleteTransaction, transactions } = useContext(
+    ExpenseTrackerContext
+  );
+  
+  const removeTransaction=(id) => {
+    deleteTransaction(id)
+  }
   return (
     <MuiList dense={false} className={classes.list}>
-      {transaction.map((t) => (
+      {transactions.map((t) => (
         <Slide
           direction='down'
           in
           mountOnEnter
           unmountOnExit
-          key={transaction.id}
+          key={t.id}
         >
           <ListItem>
             <ListItemAvatar>
               <Avatar
                 className={
-                  transaction.type === 'income'
+                  t.type === 'Income'
                     ? classes.avatarIncome
                     : classes.avatarExpense
                 }
@@ -54,11 +46,11 @@ const List = () => {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={transaction.category}
-              secondary={`${transaction.amount} - ${transaction.date}`}
+              primary={t.category}
+              secondary={`${t.amount} - ${t.date}`}
             />
             <ListItemSecondaryAction>
-              <IconButton edge='end' aria-label='delete' onClick=''>
+              <IconButton edge='end' aria-label='delete' onClick={()=>removeTransaction(t.id)}>
                 <Delete />
               </IconButton>
             </ListItemSecondaryAction>
